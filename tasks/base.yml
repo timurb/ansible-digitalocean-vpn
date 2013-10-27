@@ -1,0 +1,20 @@
+#
+# This file sets up a base server.
+# It should contain only the fixes required on all servers.
+#
+---
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: remove extra packages
+  apt: pkg={{ item }} state=absent
+  with_items:
+  - nano
+
+- name: install required packages
+  apt: pkg={{ item }} state=present
+  with_items:
+  - vim
+  - htop
+  - git
+  - python-keyczar # required to use accelerated mode

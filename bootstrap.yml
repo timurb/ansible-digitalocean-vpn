@@ -1,0 +1,7 @@
+# This playbook sets up new server from scratch
+# It should include only tasks that are required on all servers
+#
+---
+- hosts: all
+  tasks:
+  - include: tasks/base.yml
