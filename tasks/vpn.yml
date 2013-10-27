@@ -1,0 +1,35 @@
+---
+- name: install openvpn server
+  apt: pkg=openvpn state=installed
+
+- name: create masquerading script
+  copy:
+    src=files/do_masquerade.sh
+    dest=/usr/local/sbin/do_masquerade
+    owner=root
+    group=root
+    mode=0755
+
+- name: create openvpn config
+  template:
+    src=templates/openvpn.conf.j2
+    dest=/etc/openvpn/openvpn.conf
+    backup=yes
+  notify:
+    - restart openvpn
+
+- name: manage openvpn key
+  copy:
+    src=files/{{ keyfile }}
+    dest=/etc/openvpn/{{ keyfile }}
+    owner=root
+    group=root
+    mode=0600
+  notify:
+    - restart openvpn
+
+- name: enable ipv4 forwarding
+  sysctl: name=net.ipv4.ip_forward value=1
+
+- name: start openvpn server
+  service: name=openvpn enabled=yes state=started
