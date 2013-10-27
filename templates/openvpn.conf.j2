@@ -1,0 +1,17 @@
+# This file was created by Ansible.
+# Manual changes will be lost.
+
+dev tun
+ifconfig {{ server_addr }} {{ client_addr }}
+secret {{ keyfile }}
+
+{% if compression is defined and compression %}
+comp-lzo
+
+{% endif %}
+keepalive {{ keepalive }}
+ping-timer-rem
+persist-tun
+persist-key
+
+up /usr/local/sbin/do_masquerade
