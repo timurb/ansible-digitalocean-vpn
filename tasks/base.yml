@@ -12,7 +12,7 @@
   - nano
 
 - name: install required packages
-  apt: pkg={{ item }} state=present
+  apt: pkg={{ item }} state=latest
   with_items:
   - vim
   - htop

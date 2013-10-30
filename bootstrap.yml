@@ -5,3 +5,6 @@
 - hosts: all
   tasks:
   - include: tasks/base.yml
+  - name: dist-upgrade
+    apt: upgrade=dist
+
