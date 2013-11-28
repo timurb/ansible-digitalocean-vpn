@@ -72,12 +72,13 @@ and check the number in "id" field.
 
 When you have the above in place you run the command:
 ```
-ansible-playbook -K vpn_digital_ocean.yml
+./create_vpn.sh
 ```
 and have the VPN server accessible as `vpn` hostname from your localhost in a several moments.
 
-**Important:** If you don't have passwordless sudo for yourself set up on localhost you must run the command
-with `-K` key or ansible will hang infinitely.
+**Important:** If you use `ansible-playbook` instead and you don't have passwordless sudo for yourself
+set up on localhost you must run the command with `-K` key (like `ansible-playbook -K vpn_digital_ocean.yml`)
+or ansible will hang infinitely.
 
 
 ## Contributing
