@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  tasks:
+  - easy_install: name=dopy
+  - digital_ocean: >
+      state=present
+      client_id={{ do_client_id }}
+      api_key={{ do_api_key }}
+      command=droplet
+      name=vpn
+      size_id=66
+      region_id=1
+      image_id=284211
+      ssh_key_ids={{ do_ssh_key_id }}
+      wait_timeout=200
+    register: my_droplet
+  - lineinfile: >
+      dest=/etc/hosts
+      regexp="vpn$"
+      state=present
+      line="{{ my_droplet.droplet.ip_address }} vpn"
+    sudo: yes
+
+- hosts: vpn
+  include: vpn.yml
