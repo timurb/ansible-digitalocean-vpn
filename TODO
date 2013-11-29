@@ -1,3 +1,5 @@
 ## TODOs
 
+* Autogenerate VPN key for local use
+* Let enduser parametrize certain settings like DO Region
 * Automatic teardown on DigitalOcean-based droplet on inactivity
