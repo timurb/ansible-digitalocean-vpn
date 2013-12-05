@@ -1,0 +1,18 @@
+---
+- name: install rubygems
+  apt: pkg=rubygems state=present
+
+- name: install tugboat
+  gem: name=tugboat state=present user_install=false
+
+- name: create tugboat config
+  template:
+    src=templates/tugboat.j2
+    dest=/root/.tugboat
+    owner=root
+    group=root
+    mode=0600
+
+- name: verify tugboat installation
+  command: tugboat verify
+  changed_when: false
