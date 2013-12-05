@@ -20,6 +20,7 @@
       state=present
       line="{{ my_droplet.droplet.ip_address }} vpn"
     sudo: yes
+  - shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R vpn'
 
 - hosts: vpn
   include: vpn.yml
