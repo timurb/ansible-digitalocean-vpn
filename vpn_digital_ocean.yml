@@ -9,7 +9,7 @@
       command=droplet
       name=vpn
       size_id=66
-      region_id=1
+      region_id=2
       image_id=284211
       ssh_key_ids={{ do_ssh_key_id }}
       wait_timeout=200
@@ -23,3 +23,11 @@
 
 - hosts: vpn
   include: vpn.yml
+
+- hosts: vpn
+  vars:
+    vpn_sleep_time: 300
+
+  tasks:
+  - include: tasks/tugboat.yml
+  - include: tasks/vpn_teardown.yml

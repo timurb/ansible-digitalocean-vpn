@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# {{ ansible_managed }}
+
+#
+# This script outputs the current status of OpenVPN connection 
+# based on counters from STATUSFILE.
+#
+# Return code is 0 for UP, 1 for DOWN and 2 if there is no STATUSFILE found
+#
+
+STATUSFILE='/var/run/openvpn.openvpn.status'
+CURRENTSTATS='/var/run/openvpn.current_stats'
+PREVSTATS='/var/run/openvpn.prev_stats'
+SLEEPFILE='/var/run/openvpn-isup.sleep'
+
+SLEEPTIME={{ vpn_sleep_time }}
+
+if [ -f "${SLEEPFILE}" ]; then
+  NOW="$(date +%s)"
+  SLEEP="$(date +%s -r "${SLEEPFILE}")"
+  ELAPSED="$(( $NOW - $SLEEP ))"
+  if [ ${ELAPSED} -lt ${SLEEPTIME} ]; then
+    echo "SLEEPING (${ELAPSED}/${SLEEPTIME}) elapsed"
+    exit 0
+  fi
+  rm -f "${SLEEPFILE}"
+fi
+
+grep 'Auth read bytes' "${STATUSFILE}" > "${CURRENTSTATS}"
+
+if [ -f "${PREVSTATS}" ]; then
+  if diff -q "${PREVSTATS}" "${CURRENTSTATS}" > /dev/null; then
+    echo "DOWN"
+    EXITCODE=1
+  else
+    echo "UP"
+    EXITCODE=0
+  fi
+else
+  echo "ERROR"
+  EXITCODE=2
+fi
+
+mv -f "${CURRENTSTATS}" "${PREVSTATS}"
+exit "${EXITCODE}"
+
