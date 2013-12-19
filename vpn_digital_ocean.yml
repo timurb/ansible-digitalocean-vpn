@@ -9,7 +9,7 @@
       command=droplet
       name=vpn
       size_id=66
-      region_id=2
+      region_id=5
       image_id=284211
       ssh_key_ids={{ do_ssh_key_id }}
       wait_timeout=200
