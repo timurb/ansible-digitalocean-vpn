@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  gather_facts: false
   tasks:
   - easy_install: name=dopy
   - digital_ocean: >
@@ -22,13 +23,4 @@
     sudo: yes
   - shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R vpn'
 
-- hosts: vpn
-  include: vpn.yml
 
-- hosts: vpn
-  vars:
-    vpn_sleep_time: 300
-
-  tasks:
-  - include: tasks/tugboat.yml
-  - include: tasks/vpn_teardown.yml
