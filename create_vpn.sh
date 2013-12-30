@@ -19,4 +19,4 @@ echo
 ansible-playbook vpn.yml $@
 ansible-playbook vpn_teardown.yml $@
 
-which notify-send > /dev/null && notify-send 'VPN gateway is online'
+which notify-send > /dev/null && notify-send -i call-start 'VPN gateway is online'
