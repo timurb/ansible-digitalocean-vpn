@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 ansible-playbook -K vpn_digital_ocean.yml $@
 
