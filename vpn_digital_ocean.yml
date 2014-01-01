@@ -1,6 +1,10 @@
 ---
 - hosts: localhost
   gather_facts: false
+  vars:
+  - region_id: 5
+  - size_id: 66
+  - image_id: 1505447
   tasks:
   - easy_install: name=dopy
   - digital_ocean: >
@@ -9,9 +13,9 @@
       api_key={{ do_api_key }}
       command=droplet
       name=vpn
-      size_id=66
-      region_id=5
-      image_id=1505447
+      size_id={{ size_id }}
+      region_id={{ region_id }}
+      image_id={{ image_id }}
       ssh_key_ids={{ do_ssh_key_id }}
       wait_timeout=200
     register: my_droplet
