@@ -1,6 +1,10 @@
 #!/bin/sh -e
 
-ansible-playbook -K vpn_digital_ocean.yml $@
+if [ "$1" = "--nocreate" ]; then
+  shift
+else
+  ansible-playbook -K vpn_digital_ocean.yml $@
+fi
 
 echo -n "Waiting for host to get up "
 while ! ping -c 1 -W 5 vpn > /dev/null; do
