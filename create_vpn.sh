@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+echo "Script started at $(date)"
+
 if [ "$1" = "--nocreate" ]; then
   shift
 else
@@ -18,9 +20,12 @@ while ! netcat -z vpn 22; do
   echo -n "."
   sleep 1 
 done
+sleep 3
 echo
 
 ansible-playbook vpn.yml $@
 ansible-playbook vpn_teardown.yml $@
 
 which notify-send > /dev/null && notify-send -i call-start 'VPN gateway is online'
+
+echo "Script stopped at $(date)"
