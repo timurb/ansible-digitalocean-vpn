@@ -1,6 +1,9 @@
 ---
 - name: install rubygems
-  apt: pkg=ruby1.9.1-dev state=present
+  apt: pkg={{item}} state=present
+  with_items:
+  - make
+  - ruby1.9.1-dev 
 
 - name: install tugboat
   gem: name=tugboat state=present user_install=false
