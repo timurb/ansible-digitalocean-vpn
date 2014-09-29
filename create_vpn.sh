@@ -16,7 +16,7 @@ done
 echo
 
 echo -n "Waiting for SSH server on the host to get up "
-while ! netcat -z vpn 22; do
+while ! nc -z vpn 22; do
   echo -n "."
   sleep 1 
 done
