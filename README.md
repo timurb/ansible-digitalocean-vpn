@@ -53,7 +53,7 @@ To do that you need to do the configurations from the previous chapter ("VPN") a
 vpn ansible_ssh_user=root
 localhost
 ```
-* Create file `host_vars/localhost` under you ansible configuration directory (i.e. `/etc/ansiblie/host_vars/localhost`)
+* Create file `host_vars/localhost` under you ansible configuration directory (i.e. `/etc/ansible/host_vars/localhost`)
 and put the following content to it:
 
 ```yaml
