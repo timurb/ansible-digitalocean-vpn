@@ -69,6 +69,7 @@ do_ssh_key_id: SSH_KEY_ID
 curl -k 'https://api.digitalocean.com/ssh_keys/?client_id=YOUR_CLIENT_ID&api_key=YOUR_API_KEY'
 ```
    and check the number in "id" field.
+* Copy or symlink from `host_vars/localhost` to `host_vars/vpn`.
 * Make sure you can login to your localhost by SSH as yourself or root
 
 When you have the above in place you run the command:
