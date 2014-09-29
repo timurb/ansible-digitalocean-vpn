@@ -6,7 +6,7 @@
   - size_id: 66
   - image_id: 1505447
   tasks:
-  - easy_install: name=dopy
+  - pip: name=dopy
   - digital_ocean: >
       state=present
       client_id={{ do_client_id }}
