@@ -4,7 +4,7 @@
   vars:
   - region_id: 5
   - size_id: 66
-  - image_id: 1505447
+  - image_id: 6374753
   tasks:
   - pip: name=dopy
   - digital_ocean: >
