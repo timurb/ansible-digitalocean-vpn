@@ -27,5 +27,5 @@ ansible-playbook vpn.yml $@
 ansible-playbook vpn_teardown.yml $@
 
 which notify-send > /dev/null && notify-send -i call-start 'VPN gateway is online'
-
+which osascript > /dev/null && osascript -e 'display notification "VPN gateway is online" with title "Digital Ocean VPN"'
 echo "Script stopped at $(date)"
