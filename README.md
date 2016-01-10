@@ -1,5 +1,9 @@
 ## Ansible playbooks
 
+
+**!!! Not supported !!!:** I haven't been using this for couple years and don't plan to start using it again soon. I've heard somebody has ported this module to Ansible Galaxy -- please check there for an updated version.
+
+
 This is a collection of Ansible playbooks I use to automate certain tasks.
 They are intended for personal use only and chances are will not suite your needs.
 However bugrepots and pull requests are welcome.
