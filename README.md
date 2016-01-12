@@ -58,7 +58,7 @@ To do that you need to do the configurations from the previous chapter ("VPN") a
 vpn ansible_ssh_user=root
 localhost
 ```
-* Create file `host_vars/localhost` under you ansible configuration directory (i.e. `/etc/ansiblie/host_vars/localhost`)
+* Create file `host_vars/localhost` under you ansible configuration directory (i.e. `/etc/ansible/host_vars/localhost`)
 and put the following content to it:
 
 ```yaml
@@ -74,6 +74,7 @@ do_ssh_key_id: SSH_KEY_ID
 curl -k 'https://api.digitalocean.com/ssh_keys/?client_id=YOUR_CLIENT_ID&api_key=YOUR_API_KEY'
 ```
    and check the number in "id" field.
+* Copy or symlink from `host_vars/localhost` to `host_vars/vpn`.
 * Make sure you can login to your localhost by SSH as yourself or root
 
 When you have the above in place you run the command:
